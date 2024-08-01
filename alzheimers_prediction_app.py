@@ -17,7 +17,9 @@ def predict_diagnosis(input_data):
         'MemoryComplaints', 'BehavioralProblems', 'Confusion', 
         'Disorientation', 'PersonalityChanges', 'DifficultyCompletingTasks', 
         'Forgetfulness', 'ADL', 'CholesterolHDL', 'CholesterolLDL',
-        'CholesterolTotal', 'CholesterolTriglycerides'
+        'CholesterolTotal', 'CholesterolTriglycerides', 'DiastolicBP',
+        'DietQuality', 'EducationLevel', 'Ethnicity', 'FunctionalAssessment',
+        'MMSE', 'PhysicalActivity', 'SystolicBP'
     ]
     
     # Convert input data to DataFrame
@@ -62,6 +64,14 @@ cholesterol_hdl = st.number_input('Cholesterol HDL', min_value=20.0, max_value=1
 cholesterol_ldl = st.number_input('Cholesterol LDL', min_value=50.0, max_value=200.0, value=100.0)
 cholesterol_total = st.number_input('Cholesterol Total', min_value=150.0, max_value=300.0, value=200.0)
 cholesterol_triglycerides = st.number_input('Cholesterol Triglycerides', min_value=50.0, max_value=400.0, value=150.0)
+diastolic_bp = st.number_input('Diastolic BP', min_value=60, max_value=120, value=80)
+diet_quality = st.number_input('Diet Quality', min_value=0.0, max_value=10.0, value=5.0)
+education_level = st.selectbox('Education Level', [0, 1, 2, 3])
+ethnicity = st.selectbox('Ethnicity', [0, 1, 2, 3])
+functional_assessment = st.number_input('Functional Assessment', min_value=0.0, max_value=10.0, value=5.0)
+mmse = st.number_input('MMSE', min_value=0.0, max_value=30.0, value=15.0)
+physical_activity = st.number_input('Physical Activity', min_value=0.0, max_value=10.0, value=5.0)
+systolic_bp = st.number_input('Systolic BP', min_value=90, max_value=180, value=120)
 
 # Input data dictionary
 input_data = {
@@ -88,7 +98,15 @@ input_data = {
     'CholesterolHDL': cholesterol_hdl,
     'CholesterolLDL': cholesterol_ldl,
     'CholesterolTotal': cholesterol_total,
-    'CholesterolTriglycerides': cholesterol_triglycerides
+    'CholesterolTriglycerides': cholesterol_triglycerides,
+    'DiastolicBP': diastolic_bp,
+    'DietQuality': diet_quality,
+    'EducationLevel': education_level,
+    'Ethnicity': ethnicity,
+    'FunctionalAssessment': functional_assessment,
+    'MMSE': mmse,
+    'PhysicalActivity': physical_activity,
+    'SystolicBP': systolic_bp
 }
 
 # Make prediction and display result
