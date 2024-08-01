@@ -9,8 +9,22 @@ model = joblib.load(model_path)
 
 # Function to make predictions
 def predict_diagnosis(input_data):
+    # Define the correct order of features as expected by the model
+    feature_order = [
+        'Age', 'Gender', 'BMI', 'Smoking', 'AlcoholConsumption',
+        'SleepQuality', 'FamilyHistoryAlzheimers', 'CardiovascularDisease',
+        'Diabetes', 'Depression', 'HeadInjury', 'Hypertension',
+        'MemoryComplaints', 'BehavioralProblems', 'Confusion', 
+        'Disorientation', 'PersonalityChanges', 'DifficultyCompletingTasks', 
+        'Forgetfulness'
+    ]
+    
     # Convert input data to DataFrame
     df = pd.DataFrame(input_data, index=[0])
+    
+    # Ensure the DataFrame has the correct order of features
+    df = df[feature_order]
+    
     # Make prediction
     prediction = model.predict(df)
     return prediction[0]
@@ -27,7 +41,6 @@ bmi = st.number_input('BMI', min_value=15.0, max_value=40.0, value=25.0)
 smoking = st.selectbox('Smoking', [0, 1])
 
 alcohol_consumption = st.number_input('Alcohol Consumption', min_value=0.0, max_value=20.0, value=10.0, format='%f')
-
 sleep_quality = st.number_input('Sleep Quality', min_value=0.0, max_value=10.0, value=7.0)
 family_history_alzheimers = st.selectbox('Family History of Alzheimer\'s', [0, 1])
 cardiovascular_disease = st.selectbox('Cardiovascular Disease', [0, 1])
