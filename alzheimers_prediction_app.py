@@ -11,7 +11,7 @@ model = joblib.load(model_path)
 def predict_diagnosis(input_data):
     # Define the correct order of features as expected by the model
     feature_order = [
-        'PatientID', 'Age', 'Gender', 'Ethnicity', 'EducationLevel', 
+        'Age', 'Gender', 'Ethnicity', 'EducationLevel', 
         'BMI', 'Smoking', 'AlcoholConsumption', 'PhysicalActivity', 
         'DietQuality', 'SleepQuality', 'FamilyHistoryAlzheimers', 
         'CardiovascularDisease', 'Diabetes', 'Depression', 'HeadInjury', 
@@ -38,7 +38,6 @@ st.title('Alzheimer\'s Disease Prediction App')
 st.header('Please provide the following information:')
 
 # Collect user inputs
-patient_id = st.number_input('Patient ID', min_value=0, value=0)  # Placeholder as PatientID should not affect prediction
 age = st.number_input('Age', min_value=60, max_value=90, value=75)
 gender = st.selectbox('Gender', [0, 1], format_func=lambda x: 'Male' if x == 0 else 'Female')
 ethnicity = st.selectbox('Ethnicity', [0, 1, 2, 3])
@@ -74,7 +73,6 @@ forgetfulness = st.selectbox('Forgetfulness', [0, 1])
 
 # Input data dictionary
 input_data = {
-    'PatientID': patient_id,
     'Age': age,
     'Gender': gender,
     'Ethnicity': ethnicity,
