@@ -16,7 +16,8 @@ def predict_diagnosis(input_data):
         'Diabetes', 'Depression', 'HeadInjury', 'Hypertension',
         'MemoryComplaints', 'BehavioralProblems', 'Confusion', 
         'Disorientation', 'PersonalityChanges', 'DifficultyCompletingTasks', 
-        'Forgetfulness'
+        'Forgetfulness', 'ADL', 'CholesterolHDL', 'CholesterolLDL',
+        'CholesterolTotal', 'CholesterolTriglycerides'
     ]
     
     # Convert input data to DataFrame
@@ -55,6 +56,13 @@ personality_changes = st.selectbox('Personality Changes', [0, 1])
 difficulty_completing_tasks = st.selectbox('Difficulty Completing Tasks', [0, 1])
 forgetfulness = st.selectbox('Forgetfulness', [0, 1])
 
+# Additional required features
+adl = st.number_input('ADL', min_value=0.0, max_value=10.0, value=5.0)
+cholesterol_hdl = st.number_input('Cholesterol HDL', min_value=20.0, max_value=100.0, value=60.0)
+cholesterol_ldl = st.number_input('Cholesterol LDL', min_value=50.0, max_value=200.0, value=100.0)
+cholesterol_total = st.number_input('Cholesterol Total', min_value=150.0, max_value=300.0, value=200.0)
+cholesterol_triglycerides = st.number_input('Cholesterol Triglycerides', min_value=50.0, max_value=400.0, value=150.0)
+
 # Input data dictionary
 input_data = {
     'Age': age,
@@ -75,7 +83,12 @@ input_data = {
     'Disorientation': disorientation,
     'PersonalityChanges': personality_changes,
     'DifficultyCompletingTasks': difficulty_completing_tasks,
-    'Forgetfulness': forgetfulness
+    'Forgetfulness': forgetfulness,
+    'ADL': adl,
+    'CholesterolHDL': cholesterol_hdl,
+    'CholesterolLDL': cholesterol_ldl,
+    'CholesterolTotal': cholesterol_total,
+    'CholesterolTriglycerides': cholesterol_triglycerides
 }
 
 # Make prediction and display result
