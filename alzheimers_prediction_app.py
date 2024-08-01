@@ -39,7 +39,6 @@ age = st.number_input('Age', min_value=60, max_value=90, value=75)
 gender = st.selectbox('Gender', [0, 1], format_func=lambda x: 'Male' if x == 0 else 'Female')
 bmi = st.number_input('BMI', min_value=15.0, max_value=40.0, value=25.0)
 smoking = st.selectbox('Smoking', [0, 1])
-
 alcohol_consumption = st.number_input('Alcohol Consumption', min_value=0.0, max_value=20.0, value=10.0, format='%f')
 sleep_quality = st.number_input('Sleep Quality', min_value=0.0, max_value=10.0, value=7.0)
 family_history_alzheimers = st.selectbox('Family History of Alzheimer\'s', [0, 1])
@@ -81,8 +80,11 @@ input_data = {
 
 # Make prediction and display result
 if st.button('Predict Diagnosis'):
-    diagnosis = predict_diagnosis(input_data)
-    if diagnosis == 1:
-        st.error('The model predicts that the person will be diagnosed with Alzheimer\'s.')
-    else:
-        st.success('The model predicts that the person will not be diagnosed with Alzheimer\'s.')
+    try:
+        diagnosis = predict_diagnosis(input_data)
+        if diagnosis == 1:
+            st.error('The model predicts that the person will be diagnosed with Alzheimer\'s.')
+        else:
+            st.success('The model predicts that the person will not be diagnosed with Alzheimer\'s.')
+    except ValueError as e:
+        st.error(f"An error occurred: {e}")
